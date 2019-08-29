@@ -10,4 +10,18 @@ public with sharing class ReservationService {
         
     }
 
+    public static List<Reservation__c> getAllReservations(){
+
+        return [SELECT Id, Name, Total_price__c
+                FROM Reservation__c];
+
+    }
+
+    public static Reservation__c createReservation(Reservation__c reservation){
+
+        insert reservation;
+        return reservation;
+
+    }
+
 }
