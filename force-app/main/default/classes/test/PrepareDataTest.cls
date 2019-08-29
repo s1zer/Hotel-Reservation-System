@@ -7,7 +7,6 @@ public with sharing class PrepareDataTest {
                                             Email__c = 'testmail@test.com');
 
     insert customer;
-
     return customer;
 
     }
@@ -37,6 +36,24 @@ public with sharing class PrepareDataTest {
 
         insert hotel;
         return hotel;
+
+    }
+
+    public static List<Hotel__c> createHotels(){
+
+        List<Hotel__c> hotels = new List<Hotel__c>();
+
+        for(Integer i = 0 ; i < 5 ; i++){
+
+            Hotel__c hotel = new Hotel__c(Name = 'Test hotel ' + i, 
+                                    City__c= 'Test city');
+
+            hotels.add(hotel);
+
+        }
+
+        insert hotels;
+        return hotels;
 
     }
 
