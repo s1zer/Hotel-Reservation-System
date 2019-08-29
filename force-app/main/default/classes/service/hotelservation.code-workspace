@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "C:\\Users\\michal.wierzbicki\\Desktop\\Hotel project\\Hotel Reservation System"
+		},
+		{
+			"name": "Hotel-Reservation-System",
+			"path": "C:\\Users\\michal.wierzbicki\\Desktop\\Hotel project\\Hotel Reservation System\\Hotel-Reservation-System\\Hotel-Reservation-System"
+		}
+	],
+	"settings": {
+		"salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
+		"eslint.nodePath": "c:\\Users\\michal.wierzbicki\\.vscode\\extensions\\salesforce.salesforcedx-vscode-lwc-46.11.0\\node_modules"
+	}
+}
