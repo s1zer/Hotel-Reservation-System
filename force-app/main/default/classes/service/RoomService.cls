@@ -8,16 +8,6 @@ public with sharing class RoomService {
                             FROM Room__c];
     }
 
-    public static List<Room__c> getRoomsById(Id roomId){
-        
-        List<Room__c> foundRooms = [SELECT Id
-                FROM Room__c 
-                WHERE Id =: roomId];
-
-        return foundRooms;
-
-    }
-
     public static Room__c getRoomById(Id roomId){
         
         Room__c foundRoom = [SELECT Id, Name

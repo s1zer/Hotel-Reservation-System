@@ -3,9 +3,6 @@ public with sharing class ReservationController {
     @AuraEnabled
     public static Reservation__c saveReservation(Reservation__c reservation){
 
-        System.debug('controller here');
-        System.debug('reserv' + reservation);
-
         insert reservation;
         return reservation;
 
