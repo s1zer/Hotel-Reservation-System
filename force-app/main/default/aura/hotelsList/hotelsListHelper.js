@@ -38,7 +38,7 @@
             
             var foundRoom = result.getReturnValue();
             component.set("v.selectedRoom", foundRoom.Id);
-
+            
         });
         
         $A.enqueueAction(action);

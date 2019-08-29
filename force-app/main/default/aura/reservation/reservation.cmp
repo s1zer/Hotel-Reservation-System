@@ -2,6 +2,7 @@
                 access="global" 
                 controller="ReservationController">
 
+    <aura:attribute name="showButton" type="Boolean" default="false"/>
     <aura:attribute name="selectedRoom" type="Room__c"/>
     <aura:attribute name="selectedCustomer" type="Customer__c"/>
     <aura:attribute name="selectedHotel" type="Hotel__c"/>
@@ -39,10 +40,10 @@
 
                     <c:hotelsList newReservation="{!v.newReservation}" selectedRoom="{!v.selectedRoom}" selectedHotel="{!v.selectedHotel}"></c:hotelsList>
 
-                    <lightning:button label="Create new reservation" 
-                        class="slds-m-top--medium text-align:center"
-                        variant="brand"
-                        onclick="{!c.createReservation}"/>
+                        <lightning:button label="Create new reservation" 
+                            class="slds-m-top--medium text-align:center"
+                            variant="brand"
+                            onclick="{!c.createReservation}"/>
 
                 </form>
 
