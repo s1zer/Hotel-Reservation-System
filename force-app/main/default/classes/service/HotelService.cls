@@ -8,7 +8,7 @@ public with sharing class HotelService {
 
     }
 
-    public static List<Hotel__c> getALlHotels(){
+    public static List<Hotel__c> getAllHotels(){
 
         return [SELECT Id, Name, City__c
                 FROM Hotel__c];
