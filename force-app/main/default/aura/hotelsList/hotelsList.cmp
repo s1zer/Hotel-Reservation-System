@@ -35,7 +35,12 @@
 
         <aura:iteration items="{!v.freeRooms}" var="r">
 
-            <option value="{!r.Id}">{!r.Name}</option>
+            <option value="{!r.Id}"
+                               selected="{!r.Id}">
+
+                {!r.Name}
+
+            </option>
 
         </aura:iteration>
                 
