@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" 
+                access="global"
+                controller="CustomerController">
+
+    <aura:attribute name="customers" type="Customer__c[]"/>
+    <aura:attribute name="selectedCustomer" type="Customer__c"/>
+    <aura:attribute name="newReservation" type="Reservation__c"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!this}" action="{!c.onChangeVal}"/>
+
+    <lightning:select class="slds-size_1-of-3"
+                    aura:id="select-room-id"
+                    name="selectCustomer"
+                    label="Customer"
+                    value="{!v.selectedCustomer}"
+                    onchange="{!c.changeSelectedCustomer}">
+            
+        <aura:iteration items="{!v.customers}" var="c">
+
+            <option value="{!c.Id}">{!c.Name}</option>
+
+        </aura:iteration>
+                                
+    </lightning:select>
+
+</aura:component>	

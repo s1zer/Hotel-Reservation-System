@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" 
+                access="global" 
+                controller="ReservationController">
+
+    <aura:attribute name="allReservations" type="Reservation__c[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:card>
+            <div class="slds-form-element">
+
+                <aura:iteration items="{!v.allReservations}" var="rsv">
+                    
+                    <h1>Your reservations</h1>
+
+                    <li>
+                        {!rsv.Name}
+                        <br/>
+                        {!rsv.Total_price__c}
+                    </li>
+                
+                </aura:iteration>
+
+            </div>
+    </lightning:card>
+
+</aura:component>	

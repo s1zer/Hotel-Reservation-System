@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForAllPageTypes" 
+                access="global"
+                controller="HotelController">
+
+    <aura:attribute name="hotels" type="Hotel__c[]"/>
+    <aura:attribute name="selectedHotel" type="Hotel__c"/>
+    <aura:attribute name="selectedRoom" type="Room__c"/>
+    <aura:attribute name="freeRooms" type="Room__c[]"/>
+    <aura:attribute name="newReservation" type="Reservation__c"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initHotels}"/>
+    <aura:handler name="change" value="{!this}" action="{!c.onChangeVal}"/>
+
+
+    <lightning:select class="slds-size_1-of-3"
+                    aura:id="select-hotel-id"
+                    name="selectedHotel"
+                    label="Hotel"
+                    value="{!v.selectedHotel}"
+                    onchange="{!c.changeSelectedHotel}">
+            
+        <aura:iteration items="{!v.hotels}" var="h">
+
+            <option value="{!h.Id}">{!h.Name}</option>
+
+        </aura:iteration>
+                                
+    </lightning:select>
+
+        <lightning:select class="slds-size_1-of-3"
+            aura:id="select-room-id"
+            name="selectedRoom"
+            label="Room"
+            value="{!v.selectedRoom}"
+            onchange="{!c.changeSelectedRoom}">
+
+        <aura:iteration items="{!v.freeRooms}" var="r">
+
+            <option value="{!r.Id}">{!r.Name}</option>
+
+        </aura:iteration>
+                
+    </lightning:select>
+
+</aura:component>	

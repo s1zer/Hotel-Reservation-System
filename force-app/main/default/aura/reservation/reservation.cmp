@@ -1,0 +1,53 @@
+<aura:component implements="flexipage:availableForAllPageTypes" 
+                access="global" 
+                controller="ReservationController">
+
+    <aura:attribute name="selectedRoom" type="Room__c"/>
+    <aura:attribute name="selectedCustomer" type="Customer__c"/>
+    <aura:attribute name="selectedHotel" type="Hotel__c"/>
+    <aura:attribute name="newReservation" type="Reservation__c" default="{'Check_In__c' : '',
+                                                                        'Check_Out__c' : '',
+                                                                        'Customer__c' : '',
+                                                                        'Hotel__c' : '',
+                                                                        'Room__c' : ''}"/>
+                                                                        
+        <lightning:card >
+
+            <c:header></c:header>
+
+            <div class="slds-form-element">
+
+                <form class="slds-form--stacked">
+
+                    <lightning:input type="String" class="slds-size_1-of-3" aura:id = "reservationForm" label = "Reservation name"
+                        value = "{!v.newReservation.Name}"
+                        required = "true"/>
+
+                    <lightning:input type="date" class="slds-size_1-of-3" aura:id = "reservationForm" label = "Check-in date"
+                        value = "{!v.newReservation.Check_In__c}"
+                        required = "true"
+                        onchange="{!c.setCheckIn}"
+                        disabled="{!v.selectedRoom != null}"/>
+    
+                    <lightning:input type="date" class="slds-size_1-of-3" aura:id = "reservationForm" label = "Check-out date"
+                        value = "{!v.newReservation.Check_Out__c}"
+                        required = "true"
+                        onchange="{!c.setCheckOut}"
+                        disabled="{!v.selectedRoom != null}"/>
+
+                    <c:customersList newReservation="{!v.newReservation}" selectedCustomer="{!v.selectedCustomer}"></c:customersList>
+
+                    <c:hotelsList newReservation="{!v.newReservation}" selectedRoom="{!v.selectedRoom}" selectedHotel="{!v.selectedHotel}"></c:hotelsList>
+
+                    <lightning:button label="Create new reservation" 
+                        class="slds-m-top--medium text-align:center"
+                        variant="brand"
+                        onclick="{!c.createReservation}"/>
+
+                </form>
+
+            </div>
+            
+        </lightning:card>
+
+</aura:component>	
