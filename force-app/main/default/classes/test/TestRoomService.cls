@@ -63,11 +63,53 @@ public with sharing class TestRoomService {
 
     }
 
-    @isTest static void shouldReturnAllRoomsAreNotReserved(){
+    @isTest static void shouldReturnAllRoomsWhenAreNotReserved(){
 
-        
+        //given
+        Reservation__c saveReservation = PrepareDataTest.createReservation();
+        List<Reservation__c> reservationsList = new List<Reservation__c>();
+        reservationsList.add(saveReservation);
 
+         List<Room__c> roomsList = new List<Room__c>();
 
+        for(Integer i = 0 ; i < 10 ; i++){
+
+            roomsList.add(PrepareDataTest.createRoom());
+
+        }
+
+        //when
+        Test.startTest();
+            List<Room__c> rooms = RoomService.getNoBookedRooms(roomsList, reservationsList);
+        Test.stopTest();
+
+        //then
+        System.equals(rooms.size(), 10);
+
+    }
+
+    @isTest static void shouldReturnOnlyNoReservedRooms(){
+
+        //given
+        Reservation__c saveReservation = PrepareDataTest.createReservation();
+        List<Reservation__c> reservationsList = new List<Reservation__c>();
+        reservationsList.add(saveReservation);
+
+        Id reservedRoomId = saveReservation.Room__c;
+        Room__c reservedRoom = [SELECT Id, Name
+                                FROM Room__c
+                                WHERE Id =: reservedRoomId];
+
+        List<Room__c> roomsList = new List<Room__c>();
+        roomsList.add(reservedRoom);
+
+        //when
+        Test.startTest();
+            List<Room__c> rooms = RoomService.getNoBookedRooms(roomsList, reservationsList);
+        Test.stopTest();
+
+        //then
+        System.equals(rooms.size(), 0);
 
     }
 
