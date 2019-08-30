@@ -40,6 +40,7 @@ public with sharing class RoomService {
 
     } 
 
+    @TestVisible 
     private static List<Room__c> getNoBookedRooms(List<Room__c> roomsList, List<Reservation__c> reservationsList){
 
         Set<Room__c> hotelRoomsSet = roomsListToSet(roomsList);
@@ -62,10 +63,10 @@ public with sharing class RoomService {
 
         }
 
-        
     }
 
-    public static Set<Room__c> roomsListToSet(List<Room__c> roomsList){
+    @TestVisible
+    private static Set<Room__c> roomsListToSet(List<Room__c> roomsList){
 
         Set<Room__c> hotelRoomsSet = new Set<Room__c>();
         hotelRoomsSet.addAll(roomsList);
@@ -74,7 +75,8 @@ public with sharing class RoomService {
 
     }
 
-    public static List<Room__c> roomsSetToList(Set<Room__c> roomsSet){
+    @TestVisible
+    private static List<Room__c> roomsSetToList(Set<Room__c> roomsSet){
 
         List<Room__c> hotelRoomsList = new List<Room__C>();
         hotelRoomsList.addAll(roomsSet);

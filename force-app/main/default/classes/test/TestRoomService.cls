@@ -4,7 +4,12 @@ public with sharing class TestRoomService {
     @isTest static void shouldReturnAllRooms(){
 
         //given
-        List<Room__c> allRooms = PrepareDataTest.createRoomsList();
+        for(Integer i = 0 ; i < 10 ; i++){
+
+            PrepareDataTest.createRoom();
+
+        }
+        List<Room__c> getAllRooms = [SELECT Id, Name FROM Room__c];
 
         //when
         Test.startTest();
@@ -12,25 +17,60 @@ public with sharing class TestRoomService {
         Test.stopTest();
 
         //then
-        System.debug(allRooms.size());
-        System.equals(allRooms.size(), foundRooms.size());
-        
+        System.equals(foundRooms.size(), getAllRooms.size());
+        System.equals(foundRooms.size(), 10);
+
     }
 
-    // @isTest static void shouldReturnRoomById(){
+    @isTest static void shouldReturnRoomById(){
 
-    //     //given
+        //given
+        Room__c saveRoom = PrepareDataTest.createRoom();
+        Room__c getRoom = [SELECT Id, Name FROM Room__c];
+        Id roomId = getRoom.Id;
+
+        //when
+        Test.startTest();
+            Room__c foundRoom = RoomService.getRoomById(roomId);
+        Test.stopTest();
+
+        //then
+        System.equals(foundRoom != null, true);
+        System.equals(foundRoom.Id, roomId );
+        System.equals(foundRoom.Name, 'Test Room');
+
+    }
+
+    @isTest static void shouldReturnAllRoomsWhenNoReservatios(){
+
+        //given
+        List<Reservation__c> emptyReservationsList = new List<Reservation__c>();
+        List<Room__c> roomsList = new List<Room__c>();
+
+        for(Integer i = 0 ; i < 10 ; i++){
+
+            roomsList.add(PrepareDataTest.createRoom());
+
+        }
+
+        //when
+        Test.startTest();
+            List<Room__c> foundRooms = RoomService.getNoBookedRooms(roomsList, emptyReservationsList);
+        Test.stopTest();
+            
+        //then
+        System.equals(foundRooms.size(), roomsList.size());
+
+    }
+
+    @isTest static void shouldReturnAllRoomsAreNotReserved(){
+
         
-    //     //when
-
-    //     Test.startTest();
-
-    //     Test.stop();
 
 
-    //     //then
 
-    // }
+    }
+
 
     @isTest static void shouldConvertListToSet(){
 

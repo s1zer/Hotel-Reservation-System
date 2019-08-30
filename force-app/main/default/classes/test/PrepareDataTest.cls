@@ -59,35 +59,40 @@ public with sharing class PrepareDataTest {
 
     public static Room__c createRoom(){
 
+        Hotel__c saveHotel = createHotel();
+        Id hotelId = saveHotel.Id;
+
         Room__c room = new Room__c(Name = 'Test room', 
                                     Price__c = 200, 
                                     Accessibility__c = true, 
                                     Room_Type__c = 'Apartment', 
-                                    Hotel__c = createHotel().Id);
+                                    Hotel__c = hotelId);
 
         insert room;
-
         return room;
 
     }
 
-    public static List<Room__c> createRoomsList(){
+    public static Reservation__c createReservation(){
 
-        List<Room__c> rooms = new List<Room__c>();
+        Room__c saveRoom = createRoom();
+        Id roomId = saveRoom.Id;
 
-        for(Integer i = 0; i < 10; i++){
+        Hotel__c saveHotel = createHotel();
+        Id hotelId = saveHotel.Id;
 
-            Room__c room = createRoom();
-            rooms.add(room);
+        Customer__c saveCustomer = createCustomer();
+        Id customerId = saveCustomer.Id;
 
-        }
-
-        insert rooms;
-
-        return rooms;
-
+        Reservation__c saveReservation = new Reservation__c(Name = 'Test reservation',
+                                                            Check_In__c  = Date.valueOf('2019-10-10'),
+                                                            Check_Out__c = Date.valueOf('2019-10-12'),
+                                                            Customer__c = customerId,
+                                                            Hotel__c = hotelId,
+                                                            Room__c = roomId);
+        insert saveReservation;
+        return saveReservation;
+        
     }
-    
-
 
 }
