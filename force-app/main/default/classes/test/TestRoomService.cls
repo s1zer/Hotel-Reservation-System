@@ -113,6 +113,37 @@ public with sharing class TestRoomService {
 
     }
 
+    @isTest static void shouldReturnRoomsFromHotel(){
+
+        //given
+        Room__c saveRoom = PrepareDataTest.createRoom();
+        Id hotelId = saveRoom.Hotel__c;
+
+        //when
+        Test.startTest();
+            List<Room__c> roomsFromHotel = RoomService.getRoomsFromHotel(hotelId);
+        Test.stopTest();
+
+        //then
+        System.equals(roomsFromHotel.size(), 1);
+    
+    }
+
+    @isTest static void shouldReturnAvailableRoomsFromHotelByDate(){
+
+        //given
+        Room__c saveRoom = PrepareDataTest.createRoom();
+        Id hotelId = saveRoom.Hotel__c;
+
+        Date checkIn = Date.valueOf('2019-10-10');
+        Date checkOut = Date.valueOf('2019-10-12');
+
+        //when
+        Test.startTest();
+            List<Room__c> rooms = RoomService.getAvailableRoomsFromHotelByDate(checkIn, checkOut, hotelId);
+        Test.stopTest();
+
+    }
 
     @isTest static void shouldConvertListToSet(){
 
