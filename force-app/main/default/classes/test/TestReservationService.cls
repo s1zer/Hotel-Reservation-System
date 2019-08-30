@@ -38,6 +38,7 @@ public with sharing class TestReservationService {
         
         Date checkIn = Date.valueOf('2019-11-10');
         Date checkOut = Date.valueOf('2019-11-18');
+        
         //when
         Test.startTest();
             List<Reservation__c> foundReservations = ReservationService.getReservationsByDate(checkIn, checkOut);
