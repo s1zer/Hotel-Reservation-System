@@ -3,8 +3,9 @@ public with sharing class PrepareDataTest {
 
     public static Customer__c createCustomer(){
 
-    Customer__c customer = new Customer__c( Name = 'Test customer', Phone__c = '111-111-111',
-                                            Email__c = 'testmail@test.com');
+        Customer__c customer = new Customer__c( Name = 'Test customer', 
+                                                Phone__c = '111-111-111',
+                                                Email__c = 'testmail@test.com');
 
     insert customer;
     return customer;
@@ -17,7 +18,8 @@ public with sharing class PrepareDataTest {
 
         for(Integer i = 0 ; i < 5 ; i++){
 
-            Customer__c customer = new Customer__c( Name = 'Test customer ' + i, Phone__c = '111-111-111',
+            Customer__c customer = new Customer__c( Name = 'Test customer ' + i, 
+                                                    Phone__c = '111-111-111',
                                                     Email__c = 'testmail@test.com');
             
             customers.add(customer);
@@ -32,7 +34,7 @@ public with sharing class PrepareDataTest {
     public static Hotel__c createHotel(){
 
         Hotel__c hotel = new Hotel__c(Name = 'Test hotel', 
-                                    City__c= 'Test city');
+                                        City__c= 'Test city');
 
         insert hotel;
         return hotel;
@@ -46,7 +48,7 @@ public with sharing class PrepareDataTest {
         for(Integer i = 0 ; i < 5 ; i++){
 
             Hotel__c hotel = new Hotel__c(Name = 'Test hotel ' + i, 
-                                    City__c= 'Test city');
+                                            City__c= 'Test city');
 
             hotels.add(hotel);
 
