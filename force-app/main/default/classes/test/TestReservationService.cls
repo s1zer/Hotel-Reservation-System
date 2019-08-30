@@ -49,5 +49,10 @@ public with sharing class TestReservationService {
 
     }
 
+    @isTest static void shouldInsertNewReservation(){
+
+
+    }
+
 
 }
