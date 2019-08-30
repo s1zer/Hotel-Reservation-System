@@ -13,6 +13,5 @@ public with sharing class CustomerController {
         return CustomerService.getCustomerById(customerId);
 
     }
-
-
+    
 }
